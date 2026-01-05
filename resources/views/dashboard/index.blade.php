@@ -401,7 +401,7 @@
             <div class="program-card">
                 <i class="fas fa-building-columns"></i>
                 <h3>Laboratorium Ilmu Keuangan Perbankan</h3>
-                <a href="{{ route('Lab-keuangan-perbangkan') }}">
+                <a href="{{ route('lab-keuangan-perbankan-u') }}">
                     <button>Lihat Selengkapnya</button>
                 </a>
             </div>
@@ -409,7 +409,7 @@
             <div class="program-card">
                 <i class="fas fa-hand-holding-usd"></i>
                 <h3>Laboratorium Ekonomi Islam</h3>
-                <a href="{{ route('lab-ekonomi-islam') }}">
+                <a href="{{ route('lab-ekonomi-islam-u') }}">
                     <button>Lihat Selengkapnya</button>
                 </a>
             </div>

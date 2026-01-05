@@ -111,6 +111,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/lab-ekonomi-u', function () {
         return view('dashboard.lab-ekonomi-u'); // Menampilkan halaman program penelitian
         })->name('lab-ekonomi-u');
+
+     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+     Route::get('/lab-keuangan-perbankan-u', function () {
+        return view('dashboard.lab-keuangan-perbankan-u'); // Menampilkan halaman program penelitian
+        })->name('lab-keuangan-perbankan-u');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+     Route::get('/lab-ekonomi-islam-u', function () {
+        return view('dashboard.lab-ekonomi-islam-u'); // Menampilkan halaman program penelitian
+        })->name('lab-ekonomi-islam-u');
 });
 
 // ======================================================================
