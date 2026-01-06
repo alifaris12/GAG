@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laboratorium Ilmu Ekonomi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -403,6 +404,11 @@
             resize: vertical;
         }
 
+        .form-group select option:disabled {
+            color: #999;
+            background: #f5f5f5;
+        }
+
         .booking-button {
             width: 100%;
             padding: 16px;
@@ -644,6 +650,7 @@
         let currentYear = currentDate.getFullYear();
         let selectedDate = null;
         let selectedDay = null;
+        let bookedSlots = [];
 
         const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
@@ -690,7 +697,7 @@
             }
         }
 
-        function selectDate(dayElement, day) {
+        async function selectDate(dayElement, day) {
             if (selectedDay) {
                 selectedDay.classList.remove("selected");
             }
@@ -706,7 +713,47 @@
             document.getElementById('formContainer').style.display = 'block';
             document.getElementById('confirmation').style.display = 'none';
             
+            // Load booked slots for selected date
+            await loadBookedSlots(selectedDate);
+            
             document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        async function loadBookedSlots(date) {
+            try {
+                const response = await fetch(`/lab-ekonomi-u/booked-slots?date=${date}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    bookedSlots = result.booked_slots;
+                    updateTimeSlotOptions();
+                }
+            } catch (error) {
+                console.error('Error loading booked slots:', error);
+                bookedSlots = [];
+            }
+        }
+
+        function updateTimeSlotOptions() {
+            const timeSlotSelect = document.getElementById('timeSlot');
+            const options = timeSlotSelect.querySelectorAll('option');
+            
+            options.forEach(option => {
+                if (option.value !== '') {
+                    if (bookedSlots.includes(option.value)) {
+                        option.disabled = true;
+                        option.textContent = option.value + ' (Sudah Dibooking)';
+                    } else {
+                        option.disabled = false;
+                        option.textContent = option.value;
+                    }
+                }
+            });
+            
+            // Reset selected value if it's booked
+            if (bookedSlots.includes(timeSlotSelect.value)) {
+                timeSlotSelect.value = '';
+            }
         }
 
         function previousMonth() {
@@ -720,6 +767,7 @@
                 selectedDay = null;
             }
             selectedDate = null;
+            bookedSlots = [];
             document.getElementById('formContainer').style.display = 'none';
             generateCalendar();
             
@@ -737,6 +785,7 @@
                 selectedDay = null;
             }
             selectedDate = null;
+            bookedSlots = [];
             document.getElementById('formContainer').style.display = 'none';
             generateCalendar();
             
@@ -749,6 +798,7 @@
                 selectedDay = null;
             }
             selectedDate = null;
+            bookedSlots = [];
             document.getElementById('formContainer').style.display = 'none';
             document.getElementById('confirmation').style.display = 'none';
             document.getElementById('bookingForm').reset();
@@ -763,6 +813,7 @@
                 selectedDay = null;
             }
             
+            bookedSlots = [];
             document.getElementById('bookingForm').reset();
             document.getElementById('formContainer').style.display = 'none';
             document.getElementById('confirmation').style.display = 'none';
@@ -783,16 +834,15 @@
                 whatsapp: document.getElementById('wa').value,
                 reason: document.getElementById('reason').value,
                 time_slot: document.getElementById('timeSlot').value,
-                booking_date: selectedDate,
-                _token: '{{ csrf_token() }}'
+                booking_date: selectedDate
             };
 
             try {
-                const response = await fetch('{{ route("booking.lab-ekonomi.store") }}', {
+                const response = await fetch('/lab-ekonomi-u/booking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
                     },
                     body: JSON.stringify(formData)
                 });
@@ -809,7 +859,7 @@
                     document.getElementById('confirmation').style.display = 'block';
                     document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    alert('Terjadi kesalahan saat mengirim booking. Silakan coba lagi.');
+                    alert(result.message || 'Terjadi kesalahan saat mengirim booking. Silakan coba lagi.');
                 }
             } catch (error) {
                 console.error('Error:', error);

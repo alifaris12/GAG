@@ -32,6 +32,58 @@ class BookingController extends Controller
     }
 
     // ============================================
+    // ENDPOINT UNTUK CEK SLOT WAKTU TERSEDIA
+    // ============================================
+
+    // Mengecek slot waktu yang sudah dibooking untuk Lab Ekonomi
+    public function getBookedSlotsLabEkonomi(Request $request)
+    {
+        $date = $request->query('date');
+        
+        $bookedSlots = BookingLaboratoriumIlmuEkonomi::where('booking_date', $date)
+            ->whereIn('status', ['pending', 'approved'])
+            ->pluck('time_slot')
+            ->toArray();
+        
+        return response()->json([
+            'success' => true,
+            'booked_slots' => $bookedSlots
+        ]);
+    }
+
+    // Mengecek slot waktu yang sudah dibooking untuk Lab Keuangan Perbankan
+    public function getBookedSlotsLabKeuanganPerbankan(Request $request)
+    {
+        $date = $request->query('date');
+        
+        $bookedSlots = BookingLaboratoriumIlmuKeuanganPerbankan::where('booking_date', $date)
+            ->whereIn('status', ['pending', 'approved'])
+            ->pluck('time_slot')
+            ->toArray();
+        
+        return response()->json([
+            'success' => true,
+            'booked_slots' => $bookedSlots
+        ]);
+    }
+
+    // Mengecek slot waktu yang sudah dibooking untuk Lab Ekonomi Islam
+    public function getBookedSlotsLabEkonomiIslam(Request $request)
+    {
+        $date = $request->query('date');
+        
+        $bookedSlots = BookingLaboratoriumEkonomiIslam::where('booking_date', $date)
+            ->whereIn('status', ['pending', 'approved'])
+            ->pluck('time_slot')
+            ->toArray();
+        
+        return response()->json([
+            'success' => true,
+            'booked_slots' => $bookedSlots
+        ]);
+    }
+
+    // ============================================
     // MENYIMPAN BOOKING DARI USER
     // ============================================
 
@@ -46,6 +98,19 @@ class BookingController extends Controller
             'time_slot' => 'required|string',
             'booking_date' => 'required|date',
         ]);
+
+        // Cek apakah slot sudah dibooking
+        $existingBooking = BookingLaboratoriumIlmuEkonomi::where('booking_date', $request->booking_date)
+            ->where('time_slot', $request->time_slot)
+            ->whereIn('status', ['pending', 'approved'])
+            ->exists();
+
+        if ($existingBooking) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Maaf, slot waktu ini sudah dibooking. Silakan pilih waktu lain.'
+            ], 422);
+        }
 
         BookingLaboratoriumIlmuEkonomi::create([
             'name' => $request->name,
@@ -75,6 +140,19 @@ class BookingController extends Controller
             'booking_date' => 'required|date',
         ]);
 
+        // Cek apakah slot sudah dibooking
+        $existingBooking = BookingLaboratoriumIlmuKeuanganPerbankan::where('booking_date', $request->booking_date)
+            ->where('time_slot', $request->time_slot)
+            ->whereIn('status', ['pending', 'approved'])
+            ->exists();
+
+        if ($existingBooking) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Maaf, slot waktu ini sudah dibooking. Silakan pilih waktu lain.'
+            ], 422);
+        }
+
         BookingLaboratoriumIlmuKeuanganPerbankan::create([
             'name' => $request->name,
             'nim' => $request->nim,
@@ -102,6 +180,19 @@ class BookingController extends Controller
             'time_slot' => 'required|string',
             'booking_date' => 'required|date',
         ]);
+
+        // Cek apakah slot sudah dibooking
+        $existingBooking = BookingLaboratoriumEkonomiIslam::where('booking_date', $request->booking_date)
+            ->where('time_slot', $request->time_slot)
+            ->whereIn('status', ['pending', 'approved'])
+            ->exists();
+
+        if ($existingBooking) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Maaf, slot waktu ini sudah dibooking. Silakan pilih waktu lain.'
+            ], 422);
+        }
 
         BookingLaboratoriumEkonomiIslam::create([
             'name' => $request->name,

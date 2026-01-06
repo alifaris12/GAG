@@ -118,14 +118,17 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Lab Ekonomi - User
     Route::get('/lab-ekonomi-u', [App\Http\Controllers\BookingController::class, 'showLabEkonomi'])->name('lab-ekonomi-u');
     Route::post('/lab-ekonomi-u/booking', [App\Http\Controllers\BookingController::class, 'storeLabEkonomi'])->name('booking.lab-ekonomi.store');
+    Route::get('/lab-ekonomi-u/booked-slots', [App\Http\Controllers\BookingController::class, 'getBookedSlotsLabEkonomi'])->name('booking.lab-ekonomi.booked-slots');
 
     // Lab Keuangan Perbankan - User
     Route::get('/lab-keuangan-perbankan-u', [App\Http\Controllers\BookingController::class, 'showLabKeuanganPerbankan'])->name('lab-keuangan-perbankan-u');
     Route::post('/lab-keuangan-perbankan-u/booking', [App\Http\Controllers\BookingController::class, 'storeLabKeuanganPerbankan'])->name('booking.lab-keuangan-perbankan.store');
+    Route::get('/lab-keuangan-perbankan-u/booked-slots', [App\Http\Controllers\BookingController::class, 'getBookedSlotsLabKeuanganPerbankan'])->name('booking.lab-keuangan-perbankan.booked-slots');
 
     // Lab Ekonomi Islam - User
     Route::get('/lab-ekonomi-islam-u', [App\Http\Controllers\BookingController::class, 'showLabEkonomiIslam'])->name('lab-ekonomi-islam-u');
     Route::post('/lab-ekonomi-islam-u/booking', [App\Http\Controllers\BookingController::class, 'storeLabEkonomiIslam'])->name('booking.lab-ekonomi-islam.store');
+    Route::get('/lab-ekonomi-islam-u/booked-slots', [App\Http\Controllers\BookingController::class, 'getBookedSlotsLabEkonomiIslam'])->name('booking.lab-ekonomi-islam.booked-slots');
 });
 
 // ======================================================================
