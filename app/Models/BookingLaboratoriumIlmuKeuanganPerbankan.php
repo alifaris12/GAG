@@ -9,8 +9,14 @@ class BookingLaboratoriumIlmuKeuanganPerbankan extends Model
 {
     use HasFactory;
 
-    protected $table = 'bookings_laboratorium_ilmu_keuangan_perbankan'; // Perbaiki nama tabel (tanpa spasi)
+    protected $table = 'bookings_laboratorium_ilmu_keuangan_perbankan';
     protected $fillable = [
-        'name', 'nim', 'whatsapp', 'reason', 'time_slot', 'booking_date', 'status'
+        'user_id', 'name', 'nim', 'whatsapp', 'reason', 'time_slot', 'booking_date', 'status'
     ];
+
+    // Relasi ke User
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

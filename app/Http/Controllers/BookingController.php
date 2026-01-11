@@ -6,6 +6,7 @@ use App\Models\BookingLaboratoriumIlmuEkonomi;
 use App\Models\BookingLaboratoriumIlmuKeuanganPerbankan;
 use App\Models\BookingLaboratoriumEkonomiIslam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -29,6 +30,33 @@ class BookingController extends Controller
     public function showLabEkonomiIslam()
     {
         return view('dashboard.lab-ekonomi-islam-u');
+    }
+
+    // ============================================
+    // HALAMAN STATUS PEMINJAMAN
+    // ============================================
+    
+    public function showBookingStatus()
+    {
+        $user = Auth::user();
+        
+        // Ambil semua booking dari ketiga laboratorium berdasarkan user_id
+        $bookingsEkonomi = BookingLaboratoriumIlmuEkonomi::where('user_id', $user->id)
+            ->orderBy('booking_date', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        $bookingsKeuangan = BookingLaboratoriumIlmuKeuanganPerbankan::where('user_id', $user->id)
+            ->orderBy('booking_date', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        $bookingsIslam = BookingLaboratoriumEkonomiIslam::where('user_id', $user->id)
+            ->orderBy('booking_date', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('dashboard.booking-status', compact('bookingsEkonomi', 'bookingsKeuangan', 'bookingsIslam'));
     }
 
     // ============================================
@@ -113,6 +141,7 @@ class BookingController extends Controller
         }
 
         BookingLaboratoriumIlmuEkonomi::create([
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'nim' => $request->nim,
             'whatsapp' => $request->whatsapp,
@@ -154,6 +183,7 @@ class BookingController extends Controller
         }
 
         BookingLaboratoriumIlmuKeuanganPerbankan::create([
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'nim' => $request->nim,
             'whatsapp' => $request->whatsapp,
@@ -195,6 +225,7 @@ class BookingController extends Controller
         }
 
         BookingLaboratoriumEkonomiIslam::create([
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'nim' => $request->nim,
             'whatsapp' => $request->whatsapp,

@@ -45,6 +45,23 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Relasi ke Booking Lab Ekonomi
+    public function bookingsLabEkonomi()
+    {
+        return $this->hasMany(\App\Models\BookingLaboratoriumIlmuEkonomi::class);
+    }
+
+    // Relasi ke Booking Lab Keuangan Perbankan
+    public function bookingsLabKeuanganPerbankan()
+    {
+        return $this->hasMany(\App\Models\BookingLaboratoriumIlmuKeuanganPerbankan::class);
+    }
+
+    // Relasi ke Booking Lab Ekonomi Islam
+    public function bookingsLabEkonomiIslam()
+    {
+        return $this->hasMany(\App\Models\BookingLaboratoriumEkonomiIslam::class);
+    }
 
     
 }

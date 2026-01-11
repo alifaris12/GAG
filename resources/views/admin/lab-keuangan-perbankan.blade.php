@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -19,8 +20,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f7c842 0%, #f4a742 50%, #e8941a 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -31,7 +32,7 @@
         }
 
         .header-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
@@ -39,9 +40,9 @@
         }
 
         .header-title {
-            color: #667eea;
+            color: #22529a;
             font-size: 2rem;
-            font-weight: bold;
+            font-weight: 700;
             margin: 0;
             display: flex;
             align-items: center;
@@ -53,7 +54,7 @@
         }
 
         .content-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -80,27 +81,27 @@
         .filter-btn {
             padding: 10px 20px;
             border-radius: 8px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #22529a;
             background: white;
-            color: #666;
-            font-weight: 500;
+            color: #22529a;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            font-family: 'Poppins', sans-serif;
         }
 
         .filter-btn:hover {
-            background: #667eea;
+            background: #22529a;
             color: white;
-            border-color: #667eea;
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(34, 82, 154, 0.3);
         }
 
         .filter-btn.active {
-            background: #667eea;
+            background: #22529a;
             color: white;
-            border-color: #667eea;
         }
 
         .table-wrapper {
@@ -117,7 +118,7 @@
         }
 
         .custom-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #22529a 0%, #1a3d73 100%);
             color: white;
         }
 
@@ -143,9 +144,9 @@
         }
 
         .custom-table tbody tr:hover {
-            background: #f8f9ff;
+            background: #fff8e8;
             transform: scale(1.01);
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 2px 10px rgba(247, 200, 66, 0.2);
         }
 
         .custom-table tbody td {
@@ -163,23 +164,23 @@
         }
 
         .badge-pending {
-            background: #fff3cd;
+            background: #ffc107;
             color: #856404;
         }
 
         .badge-approved {
-            background: #d4edda;
-            color: #155724;
+            background: #28a745;
+            color: white;
         }
 
         .badge-rejected {
-            background: #f8d7da;
-            color: #721c24;
+            background: #dc3545;
+            color: white;
         }
 
         .badge-time {
-            background: #d1ecf1;
-            color: #0c5460;
+            background: #22529a;
+            color: white;
         }
 
         .action-btn {
@@ -200,6 +201,7 @@
         .btn-approve:hover {
             background: #218838;
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
         }
 
         .btn-reject {
@@ -210,6 +212,7 @@
         .btn-reject:hover {
             background: #c82333;
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
         }
 
         .btn-delete {
@@ -220,6 +223,7 @@
         .btn-delete:hover {
             background: #5a6268;
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
         }
 
         .whatsapp-link {
@@ -259,19 +263,45 @@
             padding: 8px 15px;
             border-radius: 6px;
             border: 1px solid #dee2e6;
-            color: #667eea;
+            color: #22529a;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .page-link:hover {
-            background: #667eea;
+            background: #22529a;
             color: white;
+            border-color: #22529a;
         }
 
         .page-item.active .page-link {
-            background: #667eea;
-            border-color: #667eea;
+            background: #22529a;
+            border-color: #22529a;
             color: white;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #22529a 0%, #1a3d73 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #f7c842 0%, #ffdd6b 100%);
+            color: #22529a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(247, 200, 66, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -301,10 +331,16 @@
 </head>
 <body>
     <div class="main-container">
+        <!-- Back Button -->
+        <a href="{{ route('admin.dashboard') }}" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Kembali ke Dashboard</span>
+        </a>
+
         <!-- Header -->
         <div class="header-card">
             <h1 class="header-title">
-                <i class="fas fa-university"></i>
+                <i class="fas fa-building-columns"></i>
                 Kelola Booking Laboratorium Keuangan & Perbankan
             </h1>
         </div>

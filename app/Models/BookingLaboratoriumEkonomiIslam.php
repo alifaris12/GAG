@@ -9,8 +9,14 @@ class BookingLaboratoriumEkonomiIslam extends Model
 {
     use HasFactory;
 
-    protected $table = 'bookings_laboratorium_ekonomi_islam'; // Perbaiki nama tabel
+    protected $table = 'bookings_laboratorium_ekonomi_islam';
     protected $fillable = [
-        'name', 'nim', 'whatsapp', 'reason', 'time_slot', 'booking_date', 'status'
+        'user_id', 'name', 'nim', 'whatsapp', 'reason', 'time_slot', 'booking_date', 'status'
     ];
+
+    // Relasi ke User
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

@@ -66,16 +66,18 @@
             transform: scale(1.1);
         }
 
-        .profile-container {
+        .top-right-buttons {
             position: absolute;
             top: 20px;
             right: 20px;
             z-index: 100;
+            display: flex;
+            gap: 15px;
         }
 
+        .status-btn,
         .profile-btn {
             padding: 12px 24px;
-            background: linear-gradient(135deg, #9a2222ff 0%, #ff0000ff 100%);
             color: white;
             border: none;
             border-radius: 25px;
@@ -87,11 +89,21 @@
             align-items: center;
             gap: 10px;
             font-family: 'Poppins', sans-serif;
-            box-shadow: 0 4px 15px rgba(34, 82, 154, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
+            text-decoration: none;
         }
 
+        .status-btn {
+            background: linear-gradient(135deg, #22529a 0%, #1a3d73 100%);
+        }
+
+        .profile-btn {
+            background: linear-gradient(135deg, #9a2222ff 0%, #ff0000ff 100%);
+        }
+
+        .status-btn::before,
         .profile-btn::before {
             content: '';
             position: absolute;
@@ -103,8 +115,16 @@
             transition: left 0.5s;
         }
 
+        .status-btn:hover::before,
         .profile-btn:hover::before {
             left: 100%;
+        }
+
+        .status-btn:hover {
+            background: linear-gradient(135deg, #f7c842 0%, #ffdd6b 100%);
+            color: #22529a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(247, 200, 66, 0.4);
         }
 
         .profile-btn:hover {
@@ -114,137 +134,10 @@
             box-shadow: 0 8px 25px rgba(247, 200, 66, 0.4);
         }
 
+        .status-btn i,
         .profile-btn i {
             font-size: 18px;
             transition: transform 0.3s ease;
-        }
-
-        .profile-btn:hover .fa-chevron-down {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 15px);
-            right: 0;
-            margin-top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-15px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-        }
-
-        .dropdown-menu.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .dropdown-menu::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            right: 20px;
-            width: 16px;
-            height: 16px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 3px;
-            transform: rotate(45deg);
-            z-index: -1;
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-            padding: 16px 20px;
-            text-align: left;
-            background: none;
-            border: none;
-            color: #333;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dropdown-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 3px;
-            background: #22529a;
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown-item:hover {
-            background: linear-gradient(90deg, rgba(34, 82, 154, 0.08) 0%, rgba(34, 82, 154, 0.02) 100%);
-            color: #22529a;
-            padding-left: 24px;
-        }
-
-        .dropdown-item:hover::before {
-            transform: scaleY(1);
-        }
-
-        .dropdown-item:active {
-            transform: scale(0.98);
-        }
-
-        .dropdown-item i {
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #22529a;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown-item:hover i {
-            transform: scale(1.1);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
-            margin: 8px 0;
-        }
-
-        .dropdown-item.logout {
-            color: #dc3545;
-        }
-
-        .dropdown-item.logout::before {
-            background: #dc3545;
-        }
-
-        .dropdown-item.logout:hover {
-            background: linear-gradient(90deg, rgba(220, 53, 69, 0.08) 0%, rgba(220, 53, 69, 0.02) 100%);
-            color: #c82333;
-        }
-
-        .dropdown-item.logout i {
-            color: #dc3545;
-        }
-
-        .dropdown-item.logout:hover i {
-            color: #c82333;
         }
 
         .program-container {
@@ -324,6 +217,17 @@
         }
 
         @media (max-width: 768px) {
+            .top-right-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .status-btn,
+            .profile-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
             .program-card {
                 width: 200px;
                 padding: 20px;
@@ -339,16 +243,6 @@
 
             .program-buttons {
                 gap: 15px;
-            }
-
-            .profile-btn {
-                padding: 10px 16px;
-                font-size: 14px;
-            }
-
-            .dropdown-menu {
-                min-width: 200px;
-                right: -10px;
             }
         }
 
@@ -376,16 +270,19 @@
 
     <img src="{{ asset('images/maskot.png') }}" alt="Maskot" class="mascot">
 
-    <div class="profile-container">
-    <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
-        @csrf
-        <button type="submit" class="profile-btn">
-            <i class="fas fa-sign-out-alt"></i> <!-- Ikon logout -->
-            <span>Logout</span> <!-- Teks logout -->
-        </button>
-    </form>
-</div>
-
+    <div class="top-right-buttons">
+        <a href="{{ route('booking.status') }}" class="status-btn">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Status Peminjaman</span>
+        </a>
+        <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+            @csrf
+            <button type="submit" class="profile-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 
     <div class="program-container">
         <h2 class="program-title">Peminjaman Laboratorium Fakultas Ekonomi</h2>
@@ -405,7 +302,6 @@
                     <button>Lihat Selengkapnya</button>
                 </a>
             </div>
-            <!-- Kotak baru untuk Lab Ekonomi Islam -->
             <div class="program-card">
                 <i class="fas fa-hand-holding-usd"></i>
                 <h3>Laboratorium Ekonomi Islam</h3>
@@ -415,57 +311,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdownMenu');
-            const profileBtn = document.querySelector('.profile-btn');
-            const chevron = profileBtn.querySelector('.fa-chevron-down');
-            
-            dropdown.classList.toggle('show');
-            
-            if (dropdown.classList.contains('show')) {
-                chevron.style.transform = 'rotate(180deg)';
-            } else {
-                chevron.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        window.onclick = function(event) {
-            const dropdown = document.getElementById('dropdownMenu');
-            const profileContainer = document.querySelector('.profile-container');
-            
-            if (!profileContainer.contains(event.target)) {
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                    const chevron = document.querySelector('.fa-chevron-down');
-                    chevron.style.transform = 'rotate(0deg)';
-                }
-            }
-        }
-
-        document.addEventListener('keydown', function(event) {
-            const dropdown = document.getElementById('dropdownMenu');
-            
-            if (event.key === 'Escape') {
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                    const chevron = document.querySelector('.fa-chevron-down');
-                    chevron.style.transform = 'rotate(0deg)';
-                    document.querySelector('.profile-btn').focus();
-                }
-            }
-        });
-
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', function() {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 100);
-            });
-        });
-    </script>
 </body>
 </html>

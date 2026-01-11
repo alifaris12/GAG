@@ -96,12 +96,6 @@ Route::middleware(['admin'])->group(function () {
 
 });
 
-
-
-
-
-
-
 // ======================================================================
 // Logout (hanya untuk user yang sudah login)
 // ======================================================================
@@ -114,6 +108,9 @@ Route::middleware('auth')->group(function () {
 // ======================================================================
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+    
+    // Halaman Status Peminjaman
+    Route::get('/booking/status', [App\Http\Controllers\BookingController::class, 'showBookingStatus'])->name('booking.status');
     
     // Lab Ekonomi - User
     Route::get('/lab-ekonomi-u', [App\Http\Controllers\BookingController::class, 'showLabEkonomi'])->name('lab-ekonomi-u');
