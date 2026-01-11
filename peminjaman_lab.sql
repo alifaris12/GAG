@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2026 at 03:23 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Jan 11, 2026 at 03:37 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bookings_laboratorium_ekonomi_islam` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `nim` varchar(255) NOT NULL,
   `whatsapp` varchar(255) NOT NULL,
@@ -44,8 +45,8 @@ CREATE TABLE `bookings_laboratorium_ekonomi_islam` (
 -- Dumping data for table `bookings_laboratorium_ekonomi_islam`
 --
 
-INSERT INTO `bookings_laboratorium_ekonomi_islam` (`id`, `name`, `nim`, `whatsapp`, `reason`, `time_slot`, `booking_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'M Sulthan Al Fahrezi', '233140707111073', '082112318744', 'test', '07:00 - 10:00', '2026-01-06', 'approved', '2026-01-05 07:00:44', '2026-01-05 07:22:22');
+INSERT INTO `bookings_laboratorium_ekonomi_islam` (`id`, `user_id`, `name`, `nim`, `whatsapp`, `reason`, `time_slot`, `booking_date`, `status`, `created_at`, `updated_at`) VALUES
+(4, 7, 'Alfahrezi', '233140707111073', '123', '123', '07:00 - 10:00', '2026-01-12', 'pending', '2026-01-11 07:19:12', '2026-01-11 07:19:12');
 
 -- --------------------------------------------------------
 
@@ -55,6 +56,7 @@ INSERT INTO `bookings_laboratorium_ekonomi_islam` (`id`, `name`, `nim`, `whatsap
 
 CREATE TABLE `bookings_laboratorium_ilmu_ekonomi` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `nim` varchar(255) NOT NULL,
   `whatsapp` varchar(255) NOT NULL,
@@ -70,8 +72,8 @@ CREATE TABLE `bookings_laboratorium_ilmu_ekonomi` (
 -- Dumping data for table `bookings_laboratorium_ilmu_ekonomi`
 --
 
-INSERT INTO `bookings_laboratorium_ilmu_ekonomi` (`id`, `name`, `nim`, `whatsapp`, `reason`, `time_slot`, `booking_date`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'M Sulthan Al Fahrezi', '233140707111073', '082112318744', 'test', '11:00 - 14:00', '2026-01-06', 'approved', '2026-01-05 07:00:57', '2026-01-05 07:22:38');
+INSERT INTO `bookings_laboratorium_ilmu_ekonomi` (`id`, `user_id`, `name`, `nim`, `whatsapp`, `reason`, `time_slot`, `booking_date`, `status`, `created_at`, `updated_at`) VALUES
+(6, 7, 'Alfahrezi', '233140707111073', '123', '123', '07:00 - 10:00', '2026-01-12', 'approved', '2026-01-11 07:18:21', '2026-01-11 07:28:57');
 
 -- --------------------------------------------------------
 
@@ -81,6 +83,7 @@ INSERT INTO `bookings_laboratorium_ilmu_ekonomi` (`id`, `name`, `nim`, `whatsapp
 
 CREATE TABLE `bookings_laboratorium_ilmu_keuangan_perbankan` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `nim` varchar(255) NOT NULL,
   `whatsapp` varchar(255) NOT NULL,
@@ -96,8 +99,8 @@ CREATE TABLE `bookings_laboratorium_ilmu_keuangan_perbankan` (
 -- Dumping data for table `bookings_laboratorium_ilmu_keuangan_perbankan`
 --
 
-INSERT INTO `bookings_laboratorium_ilmu_keuangan_perbankan` (`id`, `name`, `nim`, `whatsapp`, `reason`, `time_slot`, `booking_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'M Sulthan Al Fahrezi', '233140707111073', '082112318744', 'test', '07:00 - 10:00', '2026-01-06', 'rejected', '2026-01-05 06:59:34', '2026-01-05 07:20:41');
+INSERT INTO `bookings_laboratorium_ilmu_keuangan_perbankan` (`id`, `user_id`, `name`, `nim`, `whatsapp`, `reason`, `time_slot`, `booking_date`, `status`, `created_at`, `updated_at`) VALUES
+(3, 7, 'Alfahrezi', '233140707111073', '123', '123', '07:00 - 10:00', '2026-01-12', 'pending', '2026-01-11 07:18:49', '2026-01-11 07:18:49');
 
 -- --------------------------------------------------------
 
@@ -139,7 +142,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2025_12_28_211124_create_bookings_laboratorium_ilmu_ekonomi_table', 1),
 (6, '2025_12_28_215751_create_bookings_laboratorium_ilmu_keuangan_perbankan_table', 1),
 (7, '2025_12_28_215816_create_bookings_laboratorium_ekonomi_islam_table', 1),
-(8, '2026_01_05_070717_create_users_table', 2);
+(8, '2026_01_05_070717_create_users_table', 2),
+(9, '2026_01_11_141458_add_field_id_users_to_booking_table', 3);
 
 -- --------------------------------------------------------
 
@@ -219,19 +223,22 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 -- Indexes for table `bookings_laboratorium_ekonomi_islam`
 --
 ALTER TABLE `bookings_laboratorium_ekonomi_islam`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bookings_laboratorium_ekonomi_islam_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `bookings_laboratorium_ilmu_ekonomi`
 --
 ALTER TABLE `bookings_laboratorium_ilmu_ekonomi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bookings_laboratorium_ilmu_ekonomi_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `bookings_laboratorium_ilmu_keuangan_perbankan`
 --
 ALTER TABLE `bookings_laboratorium_ilmu_keuangan_perbankan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bookings_laboratorium_ilmu_keuangan_perbankan_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -281,19 +288,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings_laboratorium_ekonomi_islam`
 --
 ALTER TABLE `bookings_laboratorium_ekonomi_islam`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `bookings_laboratorium_ilmu_ekonomi`
 --
 ALTER TABLE `bookings_laboratorium_ilmu_ekonomi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bookings_laboratorium_ilmu_keuangan_perbankan`
 --
 ALTER TABLE `bookings_laboratorium_ilmu_keuangan_perbankan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -305,7 +312,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -318,6 +325,28 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookings_laboratorium_ekonomi_islam`
+--
+ALTER TABLE `bookings_laboratorium_ekonomi_islam`
+  ADD CONSTRAINT `bookings_laboratorium_ekonomi_islam_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `bookings_laboratorium_ilmu_ekonomi`
+--
+ALTER TABLE `bookings_laboratorium_ilmu_ekonomi`
+  ADD CONSTRAINT `bookings_laboratorium_ilmu_ekonomi_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `bookings_laboratorium_ilmu_keuangan_perbankan`
+--
+ALTER TABLE `bookings_laboratorium_ilmu_keuangan_perbankan`
+  ADD CONSTRAINT `bookings_laboratorium_ilmu_keuangan_perbankan_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
