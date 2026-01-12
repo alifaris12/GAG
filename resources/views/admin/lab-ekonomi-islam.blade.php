@@ -304,27 +304,207 @@
             box-shadow: 0 8px 25px rgba(247, 200, 66, 0.4);
         }
 
+        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .back-btn {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+
+            .header-card {
+                padding: 18px;
+                margin-bottom: 18px;
+            }
+
             .header-title {
-                font-size: 1.5rem;
+                gap: 10px;
+            }
+
+            .content-card {
+                padding: 18px;
+            }
+
+            .alert {
+                padding: 12px 16px;
             }
 
             .filter-buttons {
-                flex-direction: column;
+                gap: 8px;
             }
 
             .filter-btn {
-                width: 100%;
-                text-align: center;
+                flex: 1 1 calc(50% - 4px);
+                min-width: 140px;
+                justify-content: center;
+                padding: 10px 12px;
             }
 
             .custom-table {
+                min-width: 650px;
                 font-size: 0.8rem;
             }
 
             .custom-table thead th,
             .custom-table tbody td {
-                padding: 10px 8px;
+                padding: 10px 6px;
+            }
+
+            .action-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            .badge {
+                padding: 5px 10px;
+            }
+
+            .header-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* MOBILE SMALL */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .back-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .header-card,
+            .content-card {
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 12px;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .filter-btn {
+                width: 100%;
+                flex: 1 1 100%;
+                min-width: auto;
+            }
+
+            .custom-table {
+                min-width: 600px;
+            }
+
+            .custom-table thead th {
+                font-size: 0.75rem;
+                padding: 8px 5px;
+            }
+
+            .custom-table tbody td {
+                font-size: 0.75rem;
+                padding: 8px 5px;
+            }
+
+            .action-btn {
+                padding: 6px 8px;
+                margin: 1px;
+            }
+
+            .action-btn i {
+                font-size: 0.8rem;
+            }
+
+            .empty-state {
+                padding: 40px 15px;
+            }
+
+            .pagination {
+                gap: 3px;
+            }
+
+            .page-link {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* EXTRA SMALL DEVICES */
+        @media (max-width: 360px) {
+            body {
+                padding: 8px;
+            }
+
+            .header-title {
+                font-size: 1rem;
+            }
+
+            .header-card,
+            .content-card {
+                padding: 12px;
+            }
+
+            .custom-table {
+                min-width: 550px;
+            }
+
+            .custom-table thead th,
+            .custom-table tbody td {
+                padding: 6px 4px;
+                font-size: 0.7rem;
+            }
+
+            .badge {
+                font-size: 0.65rem;
+                padding: 4px 8px;
+            }
+
+            .action-btn {
+                padding: 5px 6px;
+            }
+        }
+
+        /* SCROLLBAR STYLING */
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #22529a;
+            border-radius: 10px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #1a3d73;
+        }
+
+        /* LANDSCAPE MODE */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .header-card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+            }
+
+            .empty-state {
+                padding: 30px 15px;
             }
         }
     </style>

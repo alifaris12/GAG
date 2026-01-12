@@ -16,7 +16,8 @@
 
         html, body {
             height: 100%;
-            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body {
@@ -28,6 +29,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            min-height: 100vh;
             position: relative;
         }
 
@@ -78,7 +80,7 @@
 
         .calendar-top-section {
             background: linear-gradient(135deg, #2c3e50, #34495e);
-            padding: 30px 35px;
+            padding: 25px 30px;
             position: relative;
             overflow: hidden;
         }
@@ -152,17 +154,19 @@
         }
 
         .header-icon {
-            font-size: 2.5em;
+            font-size: clamp(2em, 5vw, 2.5em);
             margin-bottom: 10px;
             opacity: 0.9;
         }
 
         .header-title {
-            font-size: 1.8em;
+            font-size: clamp(1.3em, 4vw, 1.8em);
             font-weight: 700;
             color: white;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-bottom: 5px;
+            line-height: 1.2;
+            padding: 0 10px;
         }
 
         .header-subtitle {
@@ -174,7 +178,7 @@
         }
 
         .calendar-content {
-            padding: 35px;
+            padding: 30px 25px;
         }
 
         .calendar-header {
@@ -182,10 +186,11 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            gap: 10px;
         }
 
         .calendar-header h2 {
-            font-size: 1.5em;
+            font-size: clamp(1.2em, 3.5vw, 1.5em);
             background: linear-gradient(135deg, #f7c842, #e8941a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -194,6 +199,8 @@
             user-select: none;
             transition: all 0.3s;
             font-weight: 700;
+            flex: 1;
+            text-align: center;
         }
 
         .calendar-header h2:hover {
@@ -210,6 +217,7 @@
             font-size: 1em;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(247, 200, 66, 0.3);
+            flex-shrink: 0;
         }
 
         .nav-button:hover {
@@ -224,7 +232,7 @@
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
+            gap: 6px;
             margin-bottom: 12px;
         }
 
@@ -232,14 +240,14 @@
             text-align: center;
             font-weight: 600;
             color: #e8941a;
-            font-size: 0.85em;
-            padding: 10px 0;
+            font-size: clamp(0.7em, 2vw, 0.85em);
+            padding: 8px 0;
         }
 
         .days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
 
         .day {
@@ -249,11 +257,11 @@
             justify-content: center;
             background: #007bff;
             color: #fff;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
-            font-size: 0.95em;
+            font-size: clamp(0.85em, 2.5vw, 0.95em);
             position: relative;
             overflow: hidden;
         }
@@ -278,7 +286,7 @@
 
         .day:hover {
             background: #0056b3;
-            transform: scale(1.1) rotate(3deg);
+            transform: scale(1.08) rotate(2deg);
             box-shadow: 0 8px 25px rgba(0, 86, 179, 0.4);
         }
 
@@ -305,7 +313,7 @@
         .form-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 35px;
+            padding: 30px 25px;
             border-radius: 24px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             width: 100%;
@@ -329,6 +337,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .back-button {
@@ -338,13 +348,13 @@
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 0.95em;
+            font-size: 0.9em;
             font-weight: 600;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(247, 200, 66, 0.3);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .back-button:hover {
@@ -362,12 +372,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin: 0;
-            font-size: 1.4em;
+            font-size: clamp(1.2em, 3.5vw, 1.4em);
             font-weight: 700;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
@@ -375,15 +385,15 @@
             color: #e8941a;
             font-weight: 600;
             margin-bottom: 10px;
-            font-size: 0.95em;
+            font-size: clamp(0.85em, 2vw, 0.95em);
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 14px;
-            font-size: 1em;
+            padding: 12px 14px;
+            font-size: clamp(0.9em, 2vw, 1em);
             border-radius: 12px;
             border: 2px solid #e8e8e8;
             outline: none;
@@ -402,6 +412,7 @@
 
         .form-group textarea {
             resize: vertical;
+            min-height: 100px;
         }
 
         .form-group select option:disabled {
@@ -411,10 +422,10 @@
 
         .booking-button {
             width: 100%;
-            padding: 16px;
+            padding: 14px 16px;
             background: linear-gradient(135deg, #f7c842, #e8941a);
             color: white;
-            font-size: 1.1em;
+            font-size: clamp(1em, 2.5vw, 1.1em);
             border: none;
             border-radius: 12px;
             cursor: pointer;
@@ -462,7 +473,7 @@
         .confirmation {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 40px;
+            padding: 35px 30px;
             border-radius: 24px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
@@ -485,7 +496,7 @@
         }
 
         .confirmation i {
-            font-size: 4em;
+            font-size: clamp(3em, 8vw, 4em);
             color: #4caf50;
             margin-bottom: 20px;
             animation: checkmark 0.8s ease-out;
@@ -502,27 +513,27 @@
 
         .confirmation h3 {
             color: #333;
-            font-size: 1.8em;
+            font-size: clamp(1.4em, 4vw, 1.8em);
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .confirmation p {
             color: #666;
-            font-size: 1.1em;
+            font-size: clamp(0.95em, 2.5vw, 1.1em);
             margin-bottom: 10px;
             font-weight: 500;
         }
 
         .confirmation button {
             margin-top: 25px;
-            padding: 14px 30px;
+            padding: 12px 25px;
             background: linear-gradient(135deg, #f7c842, #e8941a);
             color: white;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: clamp(0.95em, 2.5vw, 1em);
             font-weight: 600;
             transition: all 0.3s;
             box-shadow: 0 6px 20px rgba(247, 200, 66, 0.3);
@@ -538,24 +549,226 @@
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.9em;
+            font-size: clamp(0.85em, 2vw, 0.9em);
             font-weight: 600;
             margin-bottom: 20px;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
-        @media (max-width: 480px) {
-            .calendar-content, .form-container, .confirmation {
-                padding: 25px;
+        /* TABLET RESPONSIVE */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
             }
-            
-            .calendar-header h2 {
-                font-size: 1.3em;
+
+            .container {
+                max-width: 100%;
+                gap: 20px;
+            }
+
+            .calendar-top-section {
+                padding: 20px 25px;
+            }
+
+            .calendar-content {
+                padding: 25px 20px;
+            }
+
+            .form-container,
+            .confirmation {
+                padding: 25px 20px;
+            }
+
+            .days {
+                gap: 6px;
+            }
+
+            .weekdays {
+                gap: 4px;
+            }
+
+            .day {
+                border-radius: 10px;
+            }
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                justify-content: flex-start;
+                padding-top: 15px;
+            }
+
+            .container {
+                gap: 15px;
+            }
+
+            .calendar-top-section {
+                padding: 18px 20px;
+            }
+
+            .back-button-top {
+                padding: 8px 14px;
+                font-size: 0.85em;
+                margin-bottom: 15px;
+            }
+
+            .header-icon {
+                margin-bottom: 8px;
             }
 
             .header-title {
-                font-size: 1.5em;
+                letter-spacing: 0.5px;
+            }
+
+            .calendar-content {
+                padding: 20px 15px;
+            }
+
+            .calendar-header {
+                margin-bottom: 20px;
+            }
+
+            .nav-button {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+
+            .weekday {
+                padding: 6px 0;
+            }
+
+            .days {
+                gap: 5px;
+            }
+
+            .day {
+                border-radius: 8px;
+            }
+
+            .day:hover {
+                transform: scale(1.05);
+            }
+
+            .form-container,
+            .confirmation {
+                padding: 20px 18px;
+            }
+
+            .form-header {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .back-button {
+                padding: 8px 14px;
+                font-size: 0.85em;
+                align-self: flex-start;
+            }
+
+            .form-container h3 {
+                width: 100%;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+
+            .form-group label {
+                margin-bottom: 8px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 12px;
+            }
+
+            .booking-button {
+                padding: 14px;
+            }
+
+            .selected-date-badge {
+                padding: 6px 14px;
+                margin-bottom: 16px;
+            }
+
+            .confirmation {
+                padding: 25px 20px;
+            }
+
+            .confirmation i {
+                margin-bottom: 15px;
+            }
+
+            .confirmation h3 {
+                margin-bottom: 12px;
+            }
+
+            .confirmation p {
+                margin-bottom: 8px;
+            }
+
+            .confirmation button {
+                margin-top: 20px;
+                padding: 12px 20px;
+            }
+        }
+
+        /* EXTRA SMALL DEVICES */
+        @media (max-width: 360px) {
+            body {
+                padding: 8px;
+            }
+
+            .calendar-top-section {
+                padding: 15px;
+            }
+
+            .calendar-content {
+                padding: 18px 12px;
+            }
+
+            .form-container,
+            .confirmation {
+                padding: 18px 15px;
+            }
+
+            .days {
+                gap: 4px;
+            }
+
+            .day {
+                font-size: 0.8em;
+            }
+        }
+
+        /* LANDSCAPE MODE FOR MOBILE */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+
+            .calendar-top-section {
+                padding: 15px 20px;
+            }
+
+            .header-icon {
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+
+            .calendar-content,
+            .form-container,
+            .confirmation {
+                padding: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
             }
         }
     </style>

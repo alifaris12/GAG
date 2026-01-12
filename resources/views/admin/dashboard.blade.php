@@ -15,19 +15,22 @@
 
         html, body {
             height: 100%;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f7c842 0%, #f4a742 50%, #e8941a 100%);
             color: #333;
+            min-height: 100vh;
+            position: relative;
         }
 
         .header {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             z-index: 100;
         }
 
@@ -39,9 +42,9 @@
         }
 
         .logo-image {
-            height: 70px;
+            height: 60px;
             width: auto;
-            max-width: 250px;
+            max-width: 200px;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
             transition: transform 0.3s ease;
@@ -53,9 +56,9 @@
 
         .mascot {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 150px;
+            bottom: 20px;
+            right: 20px;
+            width: 120px;
             height: auto;
             z-index: 10;
             opacity: 0.9;
@@ -68,26 +71,26 @@
 
         .profile-container {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             z-index: 100;
         }
 
         .profile-btn {
-            padding: 12px 24px;
+            padding: 10px 20px;
             background: linear-gradient(135deg, #9a2222ff 0%, #ff0000ff 100%);
             color: white;
             border: none;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-family: 'Poppins', sans-serif;
-            box-shadow: 0 4px 15px rgba(34, 82, 154, 0.2);
+            box-shadow: 0 4px 15px rgba(154, 34, 34, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -115,7 +118,7 @@
         }
 
         .profile-btn i {
-            font-size: 18px;
+            font-size: 16px;
             transition: transform 0.3s ease;
         }
 
@@ -252,44 +255,50 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px;
-            margin-top: 80px;
+            padding: 100px 20px 40px;
+            min-height: 100vh;
             text-align: center;
-            flex-grow: 1;
         }
 
         .program-title {
-            font-size: 48px;
+            font-size: clamp(24px, 5vw, 48px);
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #22529a;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            padding: 0 10px;
         }
 
         .program-subtitle {
-            font-size: 22px;
-            margin-bottom: 40px;
+            font-size: clamp(16px, 3vw, 22px);
+            margin-bottom: 30px;
             color: #333;
             font-weight: 700;
             font-style: italic;
+            padding: 0 10px;
         }
 
         .program-buttons {
-            display: flex;
-            gap: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+            gap: 25px;
             justify-content: center;
-            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 10px;
         }
 
         .program-card {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px 20px;
             border-radius: 15px;
-            width: 250px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .program-card:hover {
@@ -298,14 +307,19 @@
         }
 
         .program-card i {
-            font-size: 40px;
+            font-size: 38px;
             color: #22529a;
             margin-bottom: 15px;
         }
 
         .program-card h3 {
-            font-size: 20px;
+            font-size: clamp(16px, 2.5vw, 20px);
             margin-bottom: 15px;
+            line-height: 1.3;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .program-card button {
@@ -316,33 +330,39 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 14px;
             transition: background-color 0.3s ease;
+            width: 100%;
         }
 
         .program-card button:hover {
             background-color: #e8941a;
         }
 
+        /* TABLET RESPONSIVE */
         @media (max-width: 768px) {
-            .program-card {
-                width: 200px;
-                padding: 20px;
+            .header {
+                top: 10px;
+                left: 10px;
             }
 
-            .program-title {
-                font-size: 36px;
+            .logo-image {
+                height: 50px;
+                max-width: 180px;
             }
 
-            .program-subtitle {
-                font-size: 18px;
-            }
-
-            .program-buttons {
-                gap: 15px;
+            .profile-container {
+                top: 10px;
+                right: 10px;
             }
 
             .profile-btn {
-                padding: 10px 16px;
+                padding: 8px 15px;
+                font-size: 13px;
+                gap: 6px;
+            }
+
+            .profile-btn i {
                 font-size: 14px;
             }
 
@@ -350,19 +370,161 @@
                 min-width: 200px;
                 right: -10px;
             }
+
+            .dropdown-item {
+                padding: 14px 18px;
+                font-size: 13px;
+            }
+
+            .mascot {
+                width: 100px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .program-container {
+                padding: 80px 15px 30px;
+            }
+
+            .program-buttons {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+                gap: 20px;
+            }
+
+            .program-card {
+                padding: 20px 15px;
+            }
+
+            .program-card i {
+                font-size: 32px;
+            }
         }
 
+        /* MOBILE RESPONSIVE */
         @media (max-width: 480px) {
-            .program-card {
-                width: 150px;
+            .header {
+                position: relative;
+                top: 0;
+                left: 0;
+                padding: 10px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .logo-image {
+                height: 40px;
+                max-width: 150px;
+            }
+
+            .profile-container {
+                position: relative;
+                top: 0;
+                right: 0;
+                width: 100%;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .profile-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                justify-content: center;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .dropdown-menu {
+                right: 50%;
+                transform: translateX(50%) translateY(-15px) scale(0.95);
+                min-width: 90vw;
+                max-width: 300px;
+            }
+
+            .dropdown-menu.show {
+                transform: translateX(50%) translateY(0) scale(1);
+            }
+
+            .dropdown-menu::before {
+                right: 50%;
+                transform: translateX(50%) rotate(45deg);
+            }
+
+            .dropdown-item {
+                padding: 14px 16px;
+            }
+
+            .mascot {
+                width: 70px;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .program-container {
+                padding: 20px 10px 30px;
+                min-height: calc(100vh - 120px);
             }
 
             .program-title {
-                font-size: 28px;
+                margin-bottom: 12px;
+                letter-spacing: 0.5px;
             }
 
             .program-subtitle {
-                font-size: 16px;
+                margin-bottom: 25px;
+            }
+
+            .program-buttons {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                max-width: 320px;
+            }
+
+            .program-card {
+                padding: 20px 15px;
+            }
+
+            .program-card i {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            .program-card h3 {
+                min-height: auto;
+                margin-bottom: 12px;
+            }
+
+            .program-card button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* EXTRA SMALL DEVICES */
+        @media (max-width: 360px) {
+            .program-buttons {
+                max-width: 280px;
+            }
+
+            .program-card {
+                padding: 18px 12px;
+            }
+
+            .dropdown-menu {
+                min-width: 95vw;
+            }
+        }
+
+        /* LANDSCAPE MODE FOR MOBILE */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .program-container {
+                padding: 80px 20px 20px;
+            }
+
+            .mascot {
+                width: 60px;
             }
         }
     </style>
@@ -377,15 +539,14 @@
     <img src="{{ asset('images/maskot.png') }}" alt="Maskot" class="mascot">
 
     <div class="profile-container">
-    <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
-        @csrf
-        <button type="submit" class="profile-btn">
-            <i class="fas fa-sign-out-alt"></i> <!-- Ikon logout -->
-            <span>Logout</span> <!-- Teks logout -->
-        </button>
-    </form>
-</div>
-
+        <form action="{{ route('logout') }}" method="POST" style="margin: 0; width: 100%;">
+            @csrf
+            <button type="submit" class="profile-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 
     <div class="program-container">
         <h2 class="program-title">Peminjaman Laboratorium Fakultas Ekonomi</h2>
@@ -405,7 +566,6 @@
                     <button>Lihat Selengkapnya</button>
                 </a>
             </div>
-            <!-- Kotak baru untuk Lab Ekonomi Islam -->
             <div class="program-card">
                 <i class="fas fa-hand-holding-usd"></i>
                 <h3>Laboratorium Ekonomi Islam</h3>
@@ -435,11 +595,13 @@
             const dropdown = document.getElementById('dropdownMenu');
             const profileContainer = document.querySelector('.profile-container');
             
-            if (!profileContainer.contains(event.target)) {
+            if (dropdown && profileContainer && !profileContainer.contains(event.target)) {
                 if (dropdown.classList.contains('show')) {
                     dropdown.classList.remove('show');
                     const chevron = document.querySelector('.fa-chevron-down');
-                    chevron.style.transform = 'rotate(0deg)';
+                    if (chevron) {
+                        chevron.style.transform = 'rotate(0deg)';
+                    }
                 }
             }
         }
@@ -447,12 +609,17 @@
         document.addEventListener('keydown', function(event) {
             const dropdown = document.getElementById('dropdownMenu');
             
-            if (event.key === 'Escape') {
+            if (event.key === 'Escape' && dropdown) {
                 if (dropdown.classList.contains('show')) {
                     dropdown.classList.remove('show');
                     const chevron = document.querySelector('.fa-chevron-down');
-                    chevron.style.transform = 'rotate(0deg)';
-                    document.querySelector('.profile-btn').focus();
+                    if (chevron) {
+                        chevron.style.transform = 'rotate(0deg)';
+                    }
+                    const profileBtn = document.querySelector('.profile-btn');
+                    if (profileBtn) {
+                        profileBtn.focus();
+                    }
                 }
             }
         });
